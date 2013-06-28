@@ -1,0 +1,9 @@
+ObjectListView 2.6.0
+* License: GPLv3
+* Source: http://sourceforge.net/projects/objectlistview/files/objectlistview/2.6.0/
+* Project page: http://objectlistview.sourceforge.net/
+
+protobuf-net r640
+* License: Apache License 2.0
+* Source: https://code.google.com/p/protobuf-net/source/browse/
+* Project page: https://code.google.com/p/protobuf-net/
