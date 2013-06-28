@@ -11,7 +11,8 @@ namespace SteamGames
 	[Serializable, ProtoContract]
 	internal sealed class State
 	{
-		private static readonly string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "steamgames.dat");
+		internal static readonly string BasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "SteamGames");
+		private static readonly string savePath = Path.Combine(BasePath, "state.dat");
 
 		[ProtoMember(2)]
 		internal ulong SteamId;
@@ -27,6 +28,15 @@ namespace SteamGames
 
 		internal static State Load()
 		{
+			if (!Directory.Exists(BasePath))
+			{
+				Directory.CreateDirectory(BasePath);
+			}
+			if (!Directory.Exists(ImageCache.cachePath))
+			{
+				Directory.CreateDirectory(ImageCache.cachePath);
+			}
+
 			if (File.Exists(savePath))
 			{
 				using (FileStream s = File.OpenRead(savePath))

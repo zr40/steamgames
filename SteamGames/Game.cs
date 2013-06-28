@@ -3,10 +3,9 @@ using System.IO;
 
 namespace SteamGames
 {
-	internal class Game
+	internal class Game : IImageReceiver
 	{
 		internal readonly int Id;
-		internal readonly Image Logo;
 		internal readonly dynamic game;
 
 		public Game(dynamic game)
@@ -15,11 +14,28 @@ namespace SteamGames
 			Name = game.name;
 			Id = (int) game.appid;
 
-			Stream img = ImageCache.Get(Id, (string) game.img_logo_url);
-			if (img != null)
-				Logo = Image.FromStream(img);
 		}
 
 		public string Name { get; private set; }
+
+		private Image logo;
+		private bool requested;
+		internal Image Logo
+		{
+			get
+			{
+				if (logo == null && !requested)
+				{
+					requested = true;
+					ImageCache.Get(Id, (string)game.img_logo_url, this);
+				}
+				return logo;
+			}
+		}
+
+		public void ReceiveImage(Stream stream)
+		{
+			logo = Image.FromStream(stream);
+		}
 	}
 }

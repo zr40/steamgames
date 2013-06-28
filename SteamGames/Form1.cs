@@ -35,6 +35,8 @@ namespace SteamGames
 			listView = new TypedObjectListView<Game>(objectListView1);
 			objectListView1.ItemRenderer = new GameRenderer();
 			LoadData();
+
+			ImageCache.RedrawNotification = objectListView1.Invalidate;
 		}
 
 		private void LoadData()
