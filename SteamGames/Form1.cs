@@ -148,6 +148,7 @@ namespace SteamGames
 			}
 
 			objectListView1.SetObjects(FilterGames(allGames));
+			objectListView1_ItemSelectionChanged(null, null);
 		}
 
 		private IEnumerable<Game> FilterGames(IEnumerable<Game> games, CheckBox force = null)
