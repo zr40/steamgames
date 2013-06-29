@@ -189,9 +189,12 @@ namespace SteamGames
 
 		private void objectListView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
 		{
-			var game = objectListView1.SelectedObject as Game;
+			UpdateDetails(listView.SelectedObject);
+		}
 
-			UpdateDetails(game);
+		private void button4_Click(object sender, EventArgs e)
+		{
+			Process.Start(string.Format("http://steamcommunity.com/app/{0}", listView.SelectedObject.Id));
 		}
 	}
 }
