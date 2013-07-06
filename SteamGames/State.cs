@@ -8,23 +8,34 @@ using ProtoBuf;
 
 namespace SteamGames
 {
-	[Serializable, ProtoContract]
+	[ProtoContract]
 	internal sealed class State
 	{
 		internal static readonly string BasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "SteamGames");
 		private static readonly string savePath = Path.Combine(BasePath, "state.dat");
 
+		[ProtoMember(1)]
+		internal string WebApiKey;
+
 		[ProtoMember(2)]
 		internal ulong SteamId;
 
-		[ProtoMember(4)]
-		internal Dictionary<string, CheckState> TagState;
-
 		[ProtoMember(3)]
-		internal Dictionary<string, List<int>> Tags;
+		internal readonly Dictionary<string, List<int>> Tags = new Dictionary<string, List<int>>();
 
-		[ProtoMember(1)]
-		internal string WebApiKey;
+		[ProtoMember(4)]
+		internal Dictionary<string, CheckState> TagState = new Dictionary<string, CheckState>();
+
+		[ProtoMember(5)]
+		internal readonly Dictionary<string, Filter> Filters;
+
+		[ProtoMember(6)]
+		internal string SelectedFilter = "All games";
+
+		private State()
+		{
+			Filters = new Dictionary<string, Filter>();
+		}
 
 		internal static State Load()
 		{
@@ -44,7 +55,7 @@ namespace SteamGames
 					return Serializer.Deserialize<State>(s);
 				}
 			}
-			return new State {Tags = new Dictionary<string, List<int>>(), TagState = new Dictionary<string, CheckState>()};
+			return new State();
 		}
 
 		internal void Save()
@@ -68,6 +79,27 @@ namespace SteamGames
 			{
 				Serializer.Serialize(s, this);
 			}
+		}
+
+		[ProtoAfterDeserialization]
+		private void AfterDeserialization()
+		{
+			CreatePredicates();
+			CreateAllGamesIfNoFilterExists();
+		}
+
+		private void CreatePredicates()
+		{
+			foreach (var filter in Filters)
+			{
+				filter.Value.CreatePredicate(this);
+			}
+		}
+
+		private void CreateAllGamesIfNoFilterExists()
+		{
+			if (Filters.Count == 0)
+				Filters.Add("All games", new Filter("All games", "true", this));
 		}
 	}
 }

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>DynamicExpresso.Core</id>
+    <version>0.8.0.0</version>
+    <title>DynamicExpresso.Core</title>
+    <authors>Davide Icardi</authors>
+    <owners>Davide Icardi</owners>
+    <projectUrl>https://github.com/davideicardi/dynamicexpresso</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Dynamic Expresso is an expression interpreter for simple C# statements.
+      Dynamic Expresso embeds it's own parsing logic, and really interprets C# statements by converting it to .NET LambdaExpression that can be invoked as any standard delegate.
+      It doesn't generate assembly but it creates dynamic expression/delegate on the fly.</description>
+    <summary>C# expression interpreter/evaluator</summary>
+    <releaseNotes />
+    <copyright />
+    <language />
+  </metadata>
+</package>

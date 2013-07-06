@@ -18,6 +18,8 @@ namespace SteamGames
 		private readonly State state;
 		private int cbTop;
 
+		private List<Game> filterGames;
+
 		public Form1()
 		{
 			state = State.Load();
@@ -61,7 +63,11 @@ namespace SteamGames
 				}
 				CreateTagCheckbox(tag, cs);
 			}
-			Filter();
+			UpdateFilters();
+			if (state.Filters.Count != 0)
+			{
+				comboBox1.SelectedItem = state.Filters[state.SelectedFilter];
+			}
 		}
 
 		private void UpdateDetails(Game game)
@@ -127,9 +133,18 @@ namespace SteamGames
 
 		private void Filter(object sender = null, EventArgs e = null)
 		{
+			if (comboBox1.SelectedItem == null)
+			{
+				filterGames = allGames;
+			}
+			else
+			{
+				filterGames = allGames.Where(((Filter) comboBox1.SelectedItem).Evaluate).ToList();
+			}
+
 			foreach (CheckBox cb in panel1.Controls)
 			{
-				cb.Text = string.Format("{0} ({1})", cb.Tag, FilterGames(allGames, cb).Count());
+				cb.Text = string.Format("{0} ({1})", cb.Tag, FilterGames(filterGames, cb).Count());
 
 				switch (cb.CheckState)
 				{
@@ -147,7 +162,7 @@ namespace SteamGames
 				}
 			}
 
-			objectListView1.SetObjects(FilterGames(allGames));
+			objectListView1.SetObjects(FilterGames(filterGames));
 			objectListView1_ItemSelectionChanged(null, null);
 		}
 
@@ -180,6 +195,16 @@ namespace SteamGames
 			{
 				state.TagState[(string) cb.Tag] = cb.CheckState;
 			}
+
+			if (state.Filters.Count != 0)
+			{
+				state.SelectedFilter = ((Filter) comboBox1.SelectedItem).Name;
+			}
+			else
+			{
+				state.SelectedFilter = null;
+			}
+
 			state.Save();
 		}
 
@@ -196,6 +221,57 @@ namespace SteamGames
 		private void button4_Click(object sender, EventArgs e)
 		{
 			Process.Start(string.Format("http://steamcommunity.com/app/{0}", listView.SelectedObject.Id));
+		}
+
+		private void button5_Click(object sender, EventArgs e)
+		{
+			var filterForm = new FilterEditor(state);
+			if (filterForm.ShowDialog() != DialogResult.OK)
+				return;
+
+			state.Filters[filterForm.Result.Name] = filterForm.Result;
+
+			UpdateFilters();
+			comboBox1.SelectedItem = filterForm.Result;
+			Filter();
+		}
+
+		private void UpdateFilters()
+		{
+			comboBox1.Items.Clear();
+			comboBox1.Items.AddRange(state.Filters.Values.ToArray());
+			comboBox1.SelectedIndex = 0;
+		}
+
+		private void button6_Click(object sender, EventArgs e)
+		{
+			var filterForm = new FilterEditor(state, (Filter) comboBox1.SelectedItem);
+			if (filterForm.ShowDialog() != DialogResult.OK)
+				return;
+
+			state.Filters.Remove(((Filter) comboBox1.SelectedItem).Name);
+
+			state.Filters[filterForm.Result.Name] = filterForm.Result;
+
+			UpdateFilters();
+			comboBox1.SelectedItem = filterForm.Result;
+
+			button6.Enabled = state.Filters.Count != 0;
+			button7.Enabled = state.Filters.Count != 0;
+		}
+
+		private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			Filter();
+		}
+
+		private void button7_Click(object sender, EventArgs e)
+		{
+			state.Filters.Remove(((Filter) comboBox1.SelectedItem).Name);
+			UpdateFilters();
+
+			button6.Enabled = state.Filters.Count != 0;
+			button7.Enabled = state.Filters.Count != 0;
 		}
 	}
 }
