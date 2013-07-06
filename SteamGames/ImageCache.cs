@@ -52,7 +52,6 @@ namespace SteamGames
 
 				if (RedrawNotification != null)
 				{
-					Console.WriteLine("Notification");
 					RedrawNotification();
 				}
 			});
