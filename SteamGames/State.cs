@@ -90,6 +90,15 @@ namespace SteamGames
 			File.Move(savePath, statePath);
 		}
 
+		[ProtoBeforeSerialization]
+		private void Sort()
+		{
+			foreach (var tag in Tags)
+			{
+				tag.Value.Sort();
+			}
+		}
+
 		[ProtoAfterDeserialization]
 		private void AfterDeserialization()
 		{
