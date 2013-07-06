@@ -239,7 +239,7 @@ namespace SteamGames
 		private void UpdateFilters()
 		{
 			comboBox1.Items.Clear();
-			comboBox1.Items.AddRange(state.Filters.Values.ToArray());
+			comboBox1.Items.AddRange(state.Filters.Values.OrderBy(f => f.Name).ToArray());
 			comboBox1.SelectedIndex = 0;
 		}
 
