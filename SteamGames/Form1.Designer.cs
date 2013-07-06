@@ -270,14 +270,14 @@
 			this.objectListView1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.objectListView1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.objectListView1.ForeColor = System.Drawing.Color.White;
-			this.objectListView1.Location = new System.Drawing.Point(0, 0);
+			this.objectListView1.Location = new System.Drawing.Point(200, 0);
 			this.objectListView1.MultiSelect = false;
 			this.objectListView1.Name = "objectListView1";
 			this.objectListView1.OwnerDraw = true;
 			this.objectListView1.ShowGroups = false;
 			this.objectListView1.ShowHeaderInAllViews = false;
 			this.objectListView1.ShowImagesOnSubItems = true;
-			this.objectListView1.Size = new System.Drawing.Size(1378, 914);
+			this.objectListView1.Size = new System.Drawing.Size(1178, 914);
 			this.objectListView1.TabIndex = 0;
 			this.objectListView1.TileSize = new System.Drawing.Size(188, 99);
 			this.objectListView1.UseCompatibleStateImageBehavior = false;
@@ -290,8 +290,8 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.Black;
 			this.ClientSize = new System.Drawing.Size(1660, 914);
-			this.Controls.Add(panel2);
 			this.Controls.Add(this.objectListView1);
+			this.Controls.Add(panel2);
 			this.Controls.Add(this.flowLayoutPanel2);
 			this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.ForeColor = System.Drawing.Color.White;
