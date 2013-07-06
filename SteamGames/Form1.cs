@@ -66,7 +66,7 @@ namespace SteamGames
 			UpdateFilters();
 			if (state.Filters.Count != 0)
 			{
-				comboBox1.SelectedItem = state.Filters[state.SelectedFilter];
+				FilterList.SelectedItem = state.Filters[state.SelectedFilter];
 			}
 		}
 
@@ -133,13 +133,13 @@ namespace SteamGames
 
 		private void Filter(object sender = null, EventArgs e = null)
 		{
-			if (comboBox1.SelectedItem == null)
+			if (FilterList.SelectedItem == null)
 			{
 				filterGames = allGames;
 			}
 			else
 			{
-				filterGames = allGames.Where(((Filter) comboBox1.SelectedItem).Evaluate).ToList();
+				filterGames = allGames.Where(((Filter) FilterList.SelectedItem).Evaluate).ToList();
 			}
 
 			foreach (CheckBox cb in panel1.Controls)
@@ -198,7 +198,7 @@ namespace SteamGames
 
 			if (state.Filters.Count != 0)
 			{
-				state.SelectedFilter = ((Filter) comboBox1.SelectedItem).Name;
+				state.SelectedFilter = ((Filter) FilterList.SelectedItem).Name;
 			}
 			else
 			{
@@ -232,42 +232,42 @@ namespace SteamGames
 			state.Filters[filterForm.Result.Name] = filterForm.Result;
 
 			UpdateFilters();
-			comboBox1.SelectedItem = filterForm.Result;
+			FilterList.SelectedItem = filterForm.Result;
 			Filter();
 		}
 
 		private void UpdateFilters()
 		{
-			comboBox1.Items.Clear();
-			comboBox1.Items.AddRange(state.Filters.Values.OrderBy(f => f.Name).ToArray());
-			comboBox1.SelectedIndex = 0;
+			FilterList.Items.Clear();
+			FilterList.Items.AddRange(state.Filters.Values.OrderBy(f => f.Name).ToArray());
+			FilterList.SelectedIndex = 0;
 		}
 
 		private void button6_Click(object sender, EventArgs e)
 		{
-			var filterForm = new FilterEditor(state, (Filter) comboBox1.SelectedItem);
+			var filterForm = new FilterEditor(state, (Filter)FilterList.SelectedItem);
 			if (filterForm.ShowDialog() != DialogResult.OK)
 				return;
 
-			state.Filters.Remove(((Filter) comboBox1.SelectedItem).Name);
+			state.Filters.Remove(((Filter)FilterList.SelectedItem).Name);
 
 			state.Filters[filterForm.Result.Name] = filterForm.Result;
 
 			UpdateFilters();
-			comboBox1.SelectedItem = filterForm.Result;
+			FilterList.SelectedItem = filterForm.Result;
 
 			button6.Enabled = state.Filters.Count != 0;
 			button7.Enabled = state.Filters.Count != 0;
 		}
 
-		private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+		private void FilterList_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			Filter();
 		}
 
 		private void button7_Click(object sender, EventArgs e)
 		{
-			state.Filters.Remove(((Filter) comboBox1.SelectedItem).Name);
+			state.Filters.Remove(((Filter)FilterList.SelectedItem).Name);
 			UpdateFilters();
 
 			button6.Enabled = state.Filters.Count != 0;

@@ -39,8 +39,8 @@
 			this.button7 = new System.Windows.Forms.Button();
 			this.button6 = new System.Windows.Forms.Button();
 			this.button5 = new System.Windows.Forms.Button();
-			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.label2 = new System.Windows.Forms.Label();
+			this.FilterList = new System.Windows.Forms.ListBox();
 			this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
 			this.label1 = new System.Windows.Forms.Label();
 			this.listBox1 = new System.Windows.Forms.ListBox();
@@ -134,7 +134,7 @@
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel1.Location = new System.Drawing.Point(0, 0);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(200, 842);
+			this.panel1.Size = new System.Drawing.Size(200, 703);
 			this.panel1.TabIndex = 0;
 			// 
 			// panel3
@@ -143,18 +143,18 @@
 			panel3.Controls.Add(this.button7);
 			panel3.Controls.Add(this.button6);
 			panel3.Controls.Add(this.button5);
-			panel3.Controls.Add(this.comboBox1);
 			panel3.Controls.Add(this.label2);
+			panel3.Controls.Add(this.FilterList);
 			panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-			panel3.Location = new System.Drawing.Point(0, 842);
+			panel3.Location = new System.Drawing.Point(0, 703);
 			panel3.Name = "panel3";
-			panel3.Size = new System.Drawing.Size(200, 72);
+			panel3.Size = new System.Drawing.Size(200, 211);
 			panel3.TabIndex = 0;
 			// 
 			// button7
 			// 
 			this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.button7.Location = new System.Drawing.Point(146, 46);
+			this.button7.Location = new System.Drawing.Point(146, 185);
 			this.button7.Name = "button7";
 			this.button7.Size = new System.Drawing.Size(51, 23);
 			this.button7.TabIndex = 10;
@@ -165,7 +165,7 @@
 			// button6
 			// 
 			this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.button6.Location = new System.Drawing.Point(73, 46);
+			this.button6.Location = new System.Drawing.Point(73, 185);
 			this.button6.Name = "button6";
 			this.button6.Size = new System.Drawing.Size(46, 23);
 			this.button6.TabIndex = 9;
@@ -176,28 +176,13 @@
 			// button5
 			// 
 			this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.button5.Location = new System.Drawing.Point(3, 46);
+			this.button5.Location = new System.Drawing.Point(3, 185);
 			this.button5.Name = "button5";
 			this.button5.Size = new System.Drawing.Size(42, 23);
 			this.button5.TabIndex = 8;
 			this.button5.Text = "Add";
 			this.button5.UseVisualStyleBackColor = true;
 			this.button5.Click += new System.EventHandler(this.button5_Click);
-			// 
-			// comboBox1
-			// 
-			this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.comboBox1.BackColor = System.Drawing.Color.Black;
-			this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.comboBox1.ForeColor = System.Drawing.Color.White;
-			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(3, 19);
-			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(194, 21);
-			this.comboBox1.TabIndex = 7;
-			this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
 			// 
 			// label2
 			// 
@@ -207,6 +192,17 @@
 			this.label2.Size = new System.Drawing.Size(39, 13);
 			this.label2.TabIndex = 0;
 			this.label2.Text = "Show:";
+			// 
+			// FilterList
+			// 
+			this.FilterList.BackColor = System.Drawing.Color.Black;
+			this.FilterList.ForeColor = System.Drawing.Color.White;
+			this.FilterList.FormattingEnabled = true;
+			this.FilterList.Location = new System.Drawing.Point(3, 19);
+			this.FilterList.Name = "FilterList";
+			this.FilterList.Size = new System.Drawing.Size(194, 160);
+			this.FilterList.TabIndex = 11;
+			this.FilterList.SelectedIndexChanged += new System.EventHandler(this.FilterList_SelectedIndexChanged);
 			// 
 			// flowLayoutPanel2
 			// 
@@ -321,8 +317,8 @@
 		private System.Windows.Forms.Button button7;
 		private System.Windows.Forms.Button button6;
 		private System.Windows.Forms.Button button5;
-		private System.Windows.Forms.ComboBox comboBox1;
 		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.ListBox FilterList;
 	}
 }
 
