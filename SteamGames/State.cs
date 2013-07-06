@@ -12,7 +12,8 @@ namespace SteamGames
 	internal sealed class State
 	{
 		internal static readonly string BasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "SteamGames");
-		private static readonly string savePath = Path.Combine(BasePath, "state.dat");
+		private static readonly string statePath = Path.Combine(BasePath, "state.dat");
+		private static readonly string savePath = Path.Combine(BasePath, "state new.dat");
 
 		[ProtoMember(1)]
 		internal string WebApiKey;
@@ -48,9 +49,9 @@ namespace SteamGames
 				Directory.CreateDirectory(ImageCache.cachePath);
 			}
 
-			if (File.Exists(savePath))
+			if (File.Exists(statePath))
 			{
-				using (FileStream s = File.OpenRead(savePath))
+				using (FileStream s = File.OpenRead(statePath))
 				{
 					return Serializer.Deserialize<State>(s);
 				}
@@ -75,10 +76,18 @@ namespace SteamGames
 				}
 			}
 
-			using (FileStream s = File.Open(savePath, FileMode.Truncate, FileAccess.Write))
+			if (File.Exists(savePath))
+				File.Delete(savePath);
+
+			using (FileStream s = File.Open(savePath, FileMode.CreateNew, FileAccess.Write))
 			{
 				Serializer.Serialize(s, this);
 			}
+
+			if (File.Exists(statePath))
+				File.Delete(statePath);
+
+			File.Move(savePath, statePath);
 		}
 
 		[ProtoAfterDeserialization]
