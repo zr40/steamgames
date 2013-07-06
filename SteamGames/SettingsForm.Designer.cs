@@ -64,7 +64,7 @@
 			this.linkLabel1.Location = new System.Drawing.Point(291, 9);
 			this.linkLabel1.Name = "linkLabel1";
 			this.linkLabel1.Size = new System.Drawing.Size(78, 13);
-			this.linkLabel1.TabIndex = 2;
+			this.linkLabel1.TabIndex = 0;
 			this.linkLabel1.TabStop = true;
 			this.linkLabel1.Text = "Request a key";
 			this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
@@ -76,7 +76,7 @@
 			this.SteamID64TextBox.Location = new System.Drawing.Point(12, 74);
 			this.SteamID64TextBox.Name = "SteamID64TextBox";
 			this.SteamID64TextBox.Size = new System.Drawing.Size(357, 22);
-			this.SteamID64TextBox.TabIndex = 4;
+			this.SteamID64TextBox.TabIndex = 3;
 			// 
 			// label2
 			// 
@@ -102,7 +102,7 @@
 			this.button1.Location = new System.Drawing.Point(213, 148);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(75, 23);
-			this.button1.TabIndex = 6;
+			this.button1.TabIndex = 4;
 			this.button1.Text = "Save";
 			this.button1.UseVisualStyleBackColor = true;
 			this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -114,7 +114,7 @@
 			this.button2.Location = new System.Drawing.Point(294, 148);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(75, 23);
-			this.button2.TabIndex = 7;
+			this.button2.TabIndex = 5;
 			this.button2.Text = "Cancel";
 			this.button2.UseVisualStyleBackColor = true;
 			// 
@@ -124,7 +124,7 @@
 			this.linkLabel2.Location = new System.Drawing.Point(266, 58);
 			this.linkLabel2.Name = "linkLabel2";
 			this.linkLabel2.Size = new System.Drawing.Size(103, 13);
-			this.linkLabel2.TabIndex = 8;
+			this.linkLabel2.TabIndex = 2;
 			this.linkLabel2.TabStop = true;
 			this.linkLabel2.Text = "Find my steamID64";
 			this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);

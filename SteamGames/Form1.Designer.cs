@@ -84,7 +84,7 @@
 			button4.Location = new System.Drawing.Point(118, 46);
 			button4.Name = "button4";
 			button4.Size = new System.Drawing.Size(161, 37);
-			button4.TabIndex = 6;
+			button4.TabIndex = 2;
 			button4.Text = "Community Hub";
 			button4.UseVisualStyleBackColor = true;
 			button4.Click += new System.EventHandler(this.button4_Click);
@@ -96,7 +96,7 @@
 			button2.Location = new System.Drawing.Point(3, 281);
 			button2.Name = "button2";
 			button2.Size = new System.Drawing.Size(75, 23);
-			button2.TabIndex = 3;
+			button2.TabIndex = 4;
 			button2.Text = "Delete";
 			button2.UseVisualStyleBackColor = true;
 			button2.Click += new System.EventHandler(this.button2_Click);
@@ -108,7 +108,7 @@
 			button3.Location = new System.Drawing.Point(204, 281);
 			button3.Name = "button3";
 			button3.Size = new System.Drawing.Size(75, 23);
-			button3.TabIndex = 4;
+			button3.TabIndex = 6;
 			button3.Text = "Add";
 			button3.UseVisualStyleBackColor = true;
 			button3.Click += new System.EventHandler(this.button3_Click);
@@ -157,7 +157,7 @@
 			this.button7.Location = new System.Drawing.Point(146, 46);
 			this.button7.Name = "button7";
 			this.button7.Size = new System.Drawing.Size(51, 23);
-			this.button7.TabIndex = 4;
+			this.button7.TabIndex = 10;
 			this.button7.Text = "Delete";
 			this.button7.UseVisualStyleBackColor = true;
 			this.button7.Click += new System.EventHandler(this.button7_Click);
@@ -168,7 +168,7 @@
 			this.button6.Location = new System.Drawing.Point(73, 46);
 			this.button6.Name = "button6";
 			this.button6.Size = new System.Drawing.Size(46, 23);
-			this.button6.TabIndex = 3;
+			this.button6.TabIndex = 9;
 			this.button6.Text = "Edit";
 			this.button6.UseVisualStyleBackColor = true;
 			this.button6.Click += new System.EventHandler(this.button6_Click);
@@ -179,7 +179,7 @@
 			this.button5.Location = new System.Drawing.Point(3, 46);
 			this.button5.Name = "button5";
 			this.button5.Size = new System.Drawing.Size(42, 23);
-			this.button5.TabIndex = 2;
+			this.button5.TabIndex = 8;
 			this.button5.Text = "Add";
 			this.button5.UseVisualStyleBackColor = true;
 			this.button5.Click += new System.EventHandler(this.button5_Click);
@@ -196,7 +196,7 @@
 			this.comboBox1.Location = new System.Drawing.Point(3, 19);
 			this.comboBox1.Name = "comboBox1";
 			this.comboBox1.Size = new System.Drawing.Size(194, 21);
-			this.comboBox1.TabIndex = 1;
+			this.comboBox1.TabIndex = 7;
 			this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
 			// 
 			// label2
@@ -244,7 +244,7 @@
 			this.listBox1.Location = new System.Drawing.Point(3, 89);
 			this.listBox1.Name = "listBox1";
 			this.listBox1.Size = new System.Drawing.Size(277, 186);
-			this.listBox1.TabIndex = 2;
+			this.listBox1.TabIndex = 3;
 			// 
 			// textBox1
 			// 
@@ -278,7 +278,7 @@
 			this.objectListView1.ShowHeaderInAllViews = false;
 			this.objectListView1.ShowImagesOnSubItems = true;
 			this.objectListView1.Size = new System.Drawing.Size(1378, 914);
-			this.objectListView1.TabIndex = 4;
+			this.objectListView1.TabIndex = 0;
 			this.objectListView1.TileSize = new System.Drawing.Size(188, 99);
 			this.objectListView1.UseCompatibleStateImageBehavior = false;
 			this.objectListView1.View = System.Windows.Forms.View.Tile;

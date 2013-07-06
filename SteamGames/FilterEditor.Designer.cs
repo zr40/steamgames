@@ -106,6 +106,7 @@
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "FilterEditor";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Filter editor";
 			this.HelpButtonClicked += new System.ComponentModel.CancelEventHandler(this.FilterEditor_HelpButtonClicked);
 			this.ResumeLayout(false);

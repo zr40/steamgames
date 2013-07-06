@@ -18,11 +18,13 @@ namespace SteamGames
 		private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			Process.Start("https://steamcommunity.com/dev");
+			WebAPIKeyTextBox.Focus();
 		}
 
 		private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			Process.Start("https://steamcommunity.com/my/?xml=1");
+			SteamID64TextBox.Focus();
 		}
 
 		private void button1_Click(object sender, System.EventArgs e)
