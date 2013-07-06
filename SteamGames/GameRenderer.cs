@@ -30,7 +30,7 @@ namespace SteamGames
 			var game = (Game) rowObject;
 			if (game.Logo != null)
 			{
-				g.DrawImage(game.Logo, itemBounds.Location);
+				g.DrawImage(game.Logo, new Rectangle(itemBounds.Location, new Size(184, 69)));
 			}
 
 			g.DrawString(game.Name, e.Item.Font, Brushes.White, new RectangleF(itemBounds.X, itemBounds.Y + 69, 184, 30), sf);
