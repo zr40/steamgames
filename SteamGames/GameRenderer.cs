@@ -8,6 +8,7 @@ namespace SteamGames
 	internal sealed class GameRenderer : AbstractRenderer
 	{
 		private readonly StringFormat sf;
+		private Brush SelectionBrush = new SolidBrush(Color.FromKnownColor(KnownColor.Highlight));
 
 		public GameRenderer()
 		{
@@ -20,7 +21,7 @@ namespace SteamGames
 		{
 			if (e.Item.ListView.SelectedItems.Contains(e.Item))
 			{
-				g.FillRectangle(Brushes.RoyalBlue, itemBounds);
+				g.FillRectangle(SelectionBrush, itemBounds);
 			}
 			else
 			{
