@@ -82,11 +82,11 @@ namespace SteamGames
 				flowLayoutPanel2.Enabled = true;
 				label1.Text = game.Name;
 				listBox1.Items.Clear();
-				foreach (var tag in state.Tags)
+				foreach (var tag in state.Tags.Keys.OrderBy(k => k))
 				{
-					if (tag.Value.Contains(game.Id))
+					if (state.Tags[tag].Contains(game.Id))
 					{
-						listBox1.Items.Add(tag.Key);
+						listBox1.Items.Add(tag);
 					}
 				}
 			}
