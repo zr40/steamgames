@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			System.Windows.Forms.Button button1;
 			System.Windows.Forms.Button button4;
 			System.Windows.Forms.Button button2;
@@ -46,6 +47,8 @@
 			this.listBox1 = new System.Windows.Forms.ListBox();
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.objectListView1 = new BrightIdeasSoftware.ObjectListView();
+			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.renameTagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			button1 = new System.Windows.Forms.Button();
 			button4 = new System.Windows.Forms.Button();
 			button2 = new System.Windows.Forms.Button();
@@ -57,6 +60,7 @@
 			panel3.SuspendLayout();
 			this.flowLayoutPanel2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.objectListView1)).BeginInit();
+			this.contextMenuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// button1
@@ -280,6 +284,20 @@
 			this.objectListView1.View = System.Windows.Forms.View.Tile;
 			this.objectListView1.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.objectListView1_ItemSelectionChanged);
 			// 
+			// contextMenuStrip1
+			// 
+			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.renameTagToolStripMenuItem});
+			this.contextMenuStrip1.Name = "contextMenuStrip1";
+			this.contextMenuStrip1.Size = new System.Drawing.Size(153, 48);
+			// 
+			// renameTagToolStripMenuItem
+			// 
+			this.renameTagToolStripMenuItem.Name = "renameTagToolStripMenuItem";
+			this.renameTagToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.renameTagToolStripMenuItem.Text = "Rename tag...";
+			this.renameTagToolStripMenuItem.Click += new System.EventHandler(this.renameTagToolStripMenuItem_Click);
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -302,6 +320,7 @@
 			this.flowLayoutPanel2.ResumeLayout(false);
 			this.flowLayoutPanel2.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.objectListView1)).EndInit();
+			this.contextMenuStrip1.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -319,6 +338,8 @@
 		private System.Windows.Forms.Button button5;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.ListBox FilterList;
+		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+		private System.Windows.Forms.ToolStripMenuItem renameTagToolStripMenuItem;
 	}
 }
 

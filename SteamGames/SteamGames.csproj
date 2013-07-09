@@ -81,6 +81,12 @@
     <Compile Include="ImageCache.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RenameTagForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RenameTagForm.Designer.cs">
+      <DependentUpon>RenameTagForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +110,9 @@
   <ItemGroup>
     <EmbeddedResource Include="FilterEditor.resx">
       <DependentUpon>FilterEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RenameTagForm.resx">
+      <DependentUpon>RenameTagForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

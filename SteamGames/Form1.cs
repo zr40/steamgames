@@ -125,6 +125,7 @@ namespace SteamGames
 			cb.Top = cbTop;
 			cb.UseMnemonic = false;
 			cb.Tag = tag;
+			cb.ContextMenuStrip = contextMenuStrip1;
 			panel1.Controls.Add(cb);
 			cbTop += cb.Height;
 
@@ -272,6 +273,15 @@ namespace SteamGames
 
 			button6.Enabled = state.Filters.Count != 0;
 			button7.Enabled = state.Filters.Count != 0;
+		}
+
+		private void renameTagToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			var cb = (CheckBox) contextMenuStrip1.SourceControl;
+			if (new RenameTagForm(cb, state).ShowDialog() == DialogResult.OK)
+			{
+				Filter();
+			}
 		}
 	}
 }
