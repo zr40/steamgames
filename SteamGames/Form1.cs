@@ -98,21 +98,33 @@ namespace SteamGames
 			if (tag == null)
 				return;
 
-			state.Tags[tag].Remove(listView.SelectedObject.Id);
-			listBox1.Items.RemoveAt(listBox1.SelectedIndex);
+			RemoveTag(tag, listView.SelectedObject);
 		}
 
 		private void button3_Click(object sender, EventArgs e)
 		{
-			string tag = textBox1.Text;
-			listBox1.Items.Add(tag);
+			AddTag(textBox1.Text, listView.SelectedObject);
+		}
+
+		private void AddTag(string tag, Game game)
+		{
 			if (!state.Tags.ContainsKey(tag))
 			{
 				state.Tags[tag] = new List<int>();
 				CreateTagCheckbox(tag, CheckState.Indeterminate);
 			}
 
-			state.Tags[tag].Add(listView.SelectedObject.Id);
+			if (!state.Tags[tag].Contains(game.Id))
+			{
+				state.Tags[tag].Add(game.Id);
+				UpdateDetails(game);
+			}
+		}
+
+		private void RemoveTag(string tag, Game game)
+		{
+			state.Tags[tag].Remove(game.Id);
+			UpdateDetails(game);
 		}
 
 		private void CreateTagCheckbox(string tag, CheckState cs)
