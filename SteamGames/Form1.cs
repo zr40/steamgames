@@ -76,12 +76,15 @@ namespace SteamGames
 			{
 				flowLayoutPanel2.Enabled = false;
 				label1.Text = "";
+				button8.Visible = false;
 			}
 			else
 			{
 				flowLayoutPanel2.Enabled = true;
 				label1.Text = game.Name;
 				listBox1.Items.Clear();
+				button8.Visible = HasTag("installed", game);
+
 				foreach (var tag in state.Tags.Keys.OrderBy(k => k))
 				{
 					if (state.Tags[tag].Contains(game.Id))
@@ -90,6 +93,14 @@ namespace SteamGames
 					}
 				}
 			}
+		}
+
+		private bool HasTag(string tag, Game game)
+		{
+			if (!state.Tags.ContainsKey(tag))
+				return false;
+
+			return state.Tags[tag].Contains(game.Id);
 		}
 
 		private void button2_Click(object sender, EventArgs e)
@@ -224,6 +235,7 @@ namespace SteamGames
 		private void button1_Click(object sender, EventArgs e)
 		{
 			Process.Start("steam://run/" + listView.SelectedObject.Id);
+			AddTag("installed", listView.SelectedObject);
 		}
 
 		private void objectListView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
@@ -294,6 +306,12 @@ namespace SteamGames
 			{
 				Filter();
 			}
+		}
+
+		private void button8_Click(object sender, EventArgs e)
+		{
+			Process.Start("steam://uninstall/" + listView.SelectedObject.Id);
+			RemoveTag("installed", listView.SelectedObject);
 		}
 	}
 }

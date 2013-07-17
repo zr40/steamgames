@@ -42,6 +42,7 @@
 			this.button5 = new System.Windows.Forms.Button();
 			this.label2 = new System.Windows.Forms.Label();
 			this.FilterList = new System.Windows.Forms.ListBox();
+			this.button8 = new System.Windows.Forms.Button();
 			this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
 			this.label1 = new System.Windows.Forms.Label();
 			this.listBox1 = new System.Windows.Forms.ListBox();
@@ -208,6 +209,21 @@
 			this.FilterList.TabIndex = 11;
 			this.FilterList.SelectedIndexChanged += new System.EventHandler(this.FilterList_SelectedIndexChanged);
 			// 
+			// button8
+			// 
+			this.button8.AutoSize = true;
+			this.button8.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+			this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.button8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.button8.ForeColor = System.Drawing.Color.White;
+			this.button8.Location = new System.Drawing.Point(3, 310);
+			this.button8.Name = "button8";
+			this.button8.Size = new System.Drawing.Size(126, 33);
+			this.button8.TabIndex = 7;
+			this.button8.Text = "Uninstall game";
+			this.button8.UseVisualStyleBackColor = true;
+			this.button8.Click += new System.EventHandler(this.button8_Click);
+			// 
 			// flowLayoutPanel2
 			// 
 			this.flowLayoutPanel2.Controls.Add(this.label1);
@@ -217,6 +233,7 @@
 			this.flowLayoutPanel2.Controls.Add(button2);
 			this.flowLayoutPanel2.Controls.Add(this.textBox1);
 			this.flowLayoutPanel2.Controls.Add(button3);
+			this.flowLayoutPanel2.Controls.Add(this.button8);
 			this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Right;
 			this.flowLayoutPanel2.Location = new System.Drawing.Point(1378, 0);
 			this.flowLayoutPanel2.Name = "flowLayoutPanel2";
@@ -289,12 +306,12 @@
 			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.renameTagToolStripMenuItem});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(153, 48);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(147, 26);
 			// 
 			// renameTagToolStripMenuItem
 			// 
 			this.renameTagToolStripMenuItem.Name = "renameTagToolStripMenuItem";
-			this.renameTagToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.renameTagToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
 			this.renameTagToolStripMenuItem.Text = "Rename tag...";
 			this.renameTagToolStripMenuItem.Click += new System.EventHandler(this.renameTagToolStripMenuItem_Click);
 			// 
@@ -340,6 +357,7 @@
 		private System.Windows.Forms.ListBox FilterList;
 		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
 		private System.Windows.Forms.ToolStripMenuItem renameTagToolStripMenuItem;
+		private System.Windows.Forms.Button button8;
 	}
 }
 
