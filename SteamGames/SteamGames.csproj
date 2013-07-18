@@ -68,11 +68,11 @@
     <Compile Include="FilterEditor.Designer.cs">
       <DependentUpon>FilterEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="GamesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="GamesForm.Designer.cs">
+      <DependentUpon>GamesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Game.cs" />
     <Compile Include="GameRenderer.cs">
@@ -94,8 +94,8 @@
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="State.cs" />
-    <None Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <None Include="GamesForm.resx">
+      <DependentUpon>GamesForm.cs</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

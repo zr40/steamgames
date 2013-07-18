@@ -11,7 +11,7 @@ using BrightIdeasSoftware;
 
 namespace SteamGames
 {
-	internal sealed partial class Form1 : Form
+	internal sealed partial class GamesForm : Form
 	{
 		private readonly List<Game> allGames = new List<Game>();
 		private readonly TypedObjectListView<Game> listView;
@@ -20,7 +20,7 @@ namespace SteamGames
 
 		private List<Game> filterGames;
 
-		public Form1()
+		public GamesForm()
 		{
 			state = State.Load();
 			if (state.WebApiKey == null)
@@ -34,11 +34,11 @@ namespace SteamGames
 
 			InitializeComponent();
 
-			listView = new TypedObjectListView<Game>(objectListView1);
-			objectListView1.ItemRenderer = new GameRenderer();
+			listView = new TypedObjectListView<Game>(GameListView);
+			GameListView.ItemRenderer = new GameRenderer();
 			LoadData();
 
-			ImageCache.RedrawNotification = objectListView1.Invalidate;
+			ImageCache.RedrawNotification = GameListView.Invalidate;
 		}
 
 		private void LoadData()
@@ -74,22 +74,22 @@ namespace SteamGames
 		{
 			if (game == null)
 			{
-				flowLayoutPanel2.Enabled = false;
-				label1.Text = "";
-				button8.Visible = false;
+				GameDetailsPanel.Enabled = false;
+				GameNameLabel.Text = "";
+				UninstallGameButton.Visible = false;
 			}
 			else
 			{
-				flowLayoutPanel2.Enabled = true;
-				label1.Text = game.Name;
-				listBox1.Items.Clear();
-				button8.Visible = HasTag("installed", game);
+				GameDetailsPanel.Enabled = true;
+				GameNameLabel.Text = game.Name;
+				TagListBox.Items.Clear();
+				UninstallGameButton.Visible = HasTag("installed", game);
 
 				foreach (var tag in state.Tags.Keys.OrderBy(k => k))
 				{
 					if (state.Tags[tag].Contains(game.Id))
 					{
-						listBox1.Items.Add(tag);
+						TagListBox.Items.Add(tag);
 					}
 				}
 			}
@@ -105,7 +105,7 @@ namespace SteamGames
 
 		private void button2_Click(object sender, EventArgs e)
 		{
-			var tag = (string) listBox1.SelectedItem;
+			var tag = (string) TagListBox.SelectedItem;
 			if (tag == null)
 				return;
 
@@ -114,7 +114,7 @@ namespace SteamGames
 
 		private void button3_Click(object sender, EventArgs e)
 		{
-			AddTag(textBox1.Text, listView.SelectedObject);
+			AddTag(TagTextBox.Text, listView.SelectedObject);
 		}
 
 		private void AddTag(string tag, Game game)
@@ -148,8 +148,8 @@ namespace SteamGames
 			cb.Top = cbTop;
 			cb.UseMnemonic = false;
 			cb.Tag = tag;
-			cb.ContextMenuStrip = contextMenuStrip1;
-			panel1.Controls.Add(cb);
+			cb.ContextMenuStrip = TagContextMenuStrip;
+			TagContainer.Controls.Add(cb);
 			cbTop += cb.Height;
 
 			cb.CheckStateChanged += Filter;
@@ -166,7 +166,7 @@ namespace SteamGames
 				filterGames = allGames.Where(((Filter) FilterList.SelectedItem).Evaluate).ToList();
 			}
 
-			foreach (CheckBox cb in panel1.Controls)
+			foreach (CheckBox cb in TagContainer.Controls)
 			{
 				cb.Text = string.Format("{0} ({1})", cb.Tag, FilterGames(filterGames, cb).Count());
 
@@ -186,13 +186,13 @@ namespace SteamGames
 				}
 			}
 
-			objectListView1.SetObjects(FilterGames(filterGames));
+			GameListView.SetObjects(FilterGames(filterGames));
 			objectListView1_ItemSelectionChanged(null, null);
 		}
 
 		private IEnumerable<Game> FilterGames(IEnumerable<Game> games, CheckBox force = null)
 		{
-			foreach (CheckBox cb in panel1.Controls)
+			foreach (CheckBox cb in TagContainer.Controls)
 			{
 				if (cb == force)
 				{
@@ -215,7 +215,7 @@ namespace SteamGames
 		private void Form1_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			state.TagState = new Dictionary<string, CheckState>();
-			foreach (CheckBox cb in panel1.Controls)
+			foreach (CheckBox cb in TagContainer.Controls)
 			{
 				state.TagState[(string) cb.Tag] = cb.CheckState;
 			}
@@ -232,7 +232,7 @@ namespace SteamGames
 			state.Save();
 		}
 
-		private void button1_Click(object sender, EventArgs e)
+		private void RunGameButton_Click(object sender, EventArgs e)
 		{
 			if (!HasTag("installed", listView.SelectedObject))
 			{
@@ -288,8 +288,8 @@ namespace SteamGames
 			UpdateFilters();
 			FilterList.SelectedItem = filterForm.Result;
 
-			button6.Enabled = state.Filters.Count != 0;
-			button7.Enabled = state.Filters.Count != 0;
+			EditFilterButton.Enabled = state.Filters.Count != 0;
+			DeleteFilterButton.Enabled = state.Filters.Count != 0;
 		}
 
 		private void FilterList_SelectedIndexChanged(object sender, EventArgs e)
@@ -302,13 +302,13 @@ namespace SteamGames
 			state.Filters.Remove(((Filter)FilterList.SelectedItem).Name);
 			UpdateFilters();
 
-			button6.Enabled = state.Filters.Count != 0;
-			button7.Enabled = state.Filters.Count != 0;
+			EditFilterButton.Enabled = state.Filters.Count != 0;
+			DeleteFilterButton.Enabled = state.Filters.Count != 0;
 		}
 
 		private void renameTagToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			var cb = (CheckBox) contextMenuStrip1.SourceControl;
+			var cb = (CheckBox) TagContextMenuStrip.SourceControl;
 			if (new RenameTagForm(cb, state).ShowDialog() == DialogResult.OK)
 			{
 				Filter();
