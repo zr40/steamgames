@@ -234,15 +234,8 @@ namespace SteamGames
 
 		private void RunGameButton_Click(object sender, EventArgs e)
 		{
-			if (!HasTag("installed", listView.SelectedObject))
-			{
-				// steam://run/ doesn't always focus the install dialog, but steam://install/ does.
-				Process.Start("steam://install/" + listView.SelectedObject.Id);
-				AddTag("installed", listView.SelectedObject);
-
-				// still call steam://run/ in case the game was already installed.
-			}
 			Process.Start("steam://run/" + listView.SelectedObject.Id);
+			AddTag("installed", listView.SelectedObject);
 		}
 
 		private void objectListView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
