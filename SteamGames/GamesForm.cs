@@ -16,7 +16,6 @@ namespace SteamGames
 		private readonly List<Game> allGames = new List<Game>();
 		private readonly TypedObjectListView<Game> listView;
 		private readonly State state;
-		private int cbTop;
 
 		private List<Game> filterGames;
 
@@ -145,12 +144,12 @@ namespace SteamGames
 			cb.AutoSize = true;
 			cb.ThreeState = true;
 			cb.CheckState = cs;
-			cb.Top = cbTop;
 			cb.UseMnemonic = false;
 			cb.Tag = tag;
 			cb.ContextMenuStrip = TagContextMenuStrip;
+			cb.Margin = Padding.Empty;
 			TagContainer.Controls.Add(cb);
-			cbTop += cb.Height;
+			TagContainer.SetFlowBreak(cb, true);
 
 			cb.CheckStateChanged += Filter;
 		}

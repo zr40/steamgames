@@ -38,7 +38,7 @@
 			System.Windows.Forms.Panel FilterPanel;
 			System.Windows.Forms.Button AddFilterButton;
 			System.Windows.Forms.Label label2;
-			this.TagContainer = new System.Windows.Forms.Panel();
+			this.TagContainer = new System.Windows.Forms.FlowLayoutPanel();
 			this.DeleteFilterButton = new System.Windows.Forms.Button();
 			this.EditFilterButton = new System.Windows.Forms.Button();
 			this.FilterList = new System.Windows.Forms.ListBox();
@@ -310,19 +310,19 @@
             this.renameTagToolStripMenuItem,
             this.deleteTagToolStripMenuItem});
 			this.TagContextMenuStrip.Name = "contextMenuStrip1";
-			this.TagContextMenuStrip.Size = new System.Drawing.Size(153, 70);
+			this.TagContextMenuStrip.Size = new System.Drawing.Size(147, 48);
 			// 
 			// renameTagToolStripMenuItem
 			// 
 			this.renameTagToolStripMenuItem.Name = "renameTagToolStripMenuItem";
-			this.renameTagToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.renameTagToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
 			this.renameTagToolStripMenuItem.Text = "Rename tag...";
 			this.renameTagToolStripMenuItem.Click += new System.EventHandler(this.renameTagToolStripMenuItem_Click);
 			// 
 			// deleteTagToolStripMenuItem
 			// 
 			this.deleteTagToolStripMenuItem.Name = "deleteTagToolStripMenuItem";
-			this.deleteTagToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.deleteTagToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
 			this.deleteTagToolStripMenuItem.Text = "Delete tag...";
 			this.deleteTagToolStripMenuItem.Click += new System.EventHandler(this.deleteTagToolStripMenuItem_Click);
 			// 
@@ -355,7 +355,7 @@
 
 		#endregion
 
-		private System.Windows.Forms.Panel TagContainer;
+		private System.Windows.Forms.FlowLayoutPanel TagContainer;
 		private System.Windows.Forms.FlowLayoutPanel GameDetailsPanel;
 		private System.Windows.Forms.Label GameNameLabel;
 		private System.Windows.Forms.ListBox TagListBox;
