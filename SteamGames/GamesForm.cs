@@ -313,5 +313,20 @@ namespace SteamGames
 			Process.Start("steam://uninstall/" + listView.SelectedObject.Id);
 			RemoveTag("installed", listView.SelectedObject);
 		}
+
+		private void deleteTagToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			var cb = (CheckBox) TagContextMenuStrip.SourceControl;
+			var tag = (string) cb.Tag;
+
+			if (MessageBox.Show(string.Format("Are you sure you want to delete '{0}'? This cannot be undone.", tag), "Delete tag", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+			{
+				state.Tags.Remove(tag);
+				state.TagState.Remove(tag);
+				TagContainer.Controls.Remove(cb);
+
+				Filter();
+			}
+		}
 	}
 }

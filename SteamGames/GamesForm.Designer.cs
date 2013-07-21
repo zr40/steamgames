@@ -50,6 +50,7 @@
 			this.GameListView = new BrightIdeasSoftware.ObjectListView();
 			this.TagContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.renameTagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.deleteTagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			RunGameButton = new System.Windows.Forms.Button();
 			CommunityHubButton = new System.Windows.Forms.Button();
 			DeleteTagButton = new System.Windows.Forms.Button();
@@ -306,9 +307,10 @@
 			// TagContextMenuStrip
 			// 
 			this.TagContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.renameTagToolStripMenuItem});
+            this.renameTagToolStripMenuItem,
+            this.deleteTagToolStripMenuItem});
 			this.TagContextMenuStrip.Name = "contextMenuStrip1";
-			this.TagContextMenuStrip.Size = new System.Drawing.Size(153, 48);
+			this.TagContextMenuStrip.Size = new System.Drawing.Size(153, 70);
 			// 
 			// renameTagToolStripMenuItem
 			// 
@@ -316,6 +318,13 @@
 			this.renameTagToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.renameTagToolStripMenuItem.Text = "Rename tag...";
 			this.renameTagToolStripMenuItem.Click += new System.EventHandler(this.renameTagToolStripMenuItem_Click);
+			// 
+			// deleteTagToolStripMenuItem
+			// 
+			this.deleteTagToolStripMenuItem.Name = "deleteTagToolStripMenuItem";
+			this.deleteTagToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.deleteTagToolStripMenuItem.Text = "Delete tag...";
+			this.deleteTagToolStripMenuItem.Click += new System.EventHandler(this.deleteTagToolStripMenuItem_Click);
 			// 
 			// GamesForm
 			// 
@@ -358,6 +367,7 @@
 		private System.Windows.Forms.ContextMenuStrip TagContextMenuStrip;
 		private System.Windows.Forms.ToolStripMenuItem renameTagToolStripMenuItem;
 		private System.Windows.Forms.Button UninstallGameButton;
+		private System.Windows.Forms.ToolStripMenuItem deleteTagToolStripMenuItem;
 	}
 }
 
