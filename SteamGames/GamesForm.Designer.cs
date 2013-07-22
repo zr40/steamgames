@@ -341,6 +341,7 @@
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Steam Games";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
+			this.Load += new System.EventHandler(this.GamesForm_Load);
 			panel2.ResumeLayout(false);
 			panel2.PerformLayout();
 			FilterPanel.ResumeLayout(false);

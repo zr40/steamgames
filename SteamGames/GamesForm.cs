@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
-using System.Json;
 using System.Linq;
-using System.Net;
 using System.Windows.Forms;
 
 using BrightIdeasSoftware;
@@ -19,40 +17,15 @@ namespace SteamGames
 
 		private List<Game> filterGames;
 
-		public GamesForm()
+		internal GamesForm(State state, List<Game> allGames)
 		{
-			state = State.Load();
-			if (state.WebApiKey == null)
-			{
-				new SettingsForm(state).ShowDialog();
-				if (state.WebApiKey == null)
-				{
-					Environment.Exit(0);
-				}
-			}
+			this.state = state;
+			this.allGames = allGames;
 
 			InitializeComponent();
 
 			listView = new TypedObjectListView<Game>(GameListView);
 			GameListView.ItemRenderer = new GameRenderer();
-			LoadData();
-
-			ImageCache.RedrawNotification = GameListView.Invalidate;
-		}
-
-		private void LoadData()
-		{
-			WebRequest r = WebRequest.Create(string.Format("http://api.steampowered.com/IPlayerService/GetOwnedGames/v1?key={0}&steamid={1}&include_appinfo=1&include_played_free_games=1", state.WebApiKey, state.SteamId));
-			dynamic o = JsonValue.Load(r.GetResponse().GetResponseStream());
-
-			dynamic games = o.response.games;
-
-			foreach (dynamic game in games)
-			{
-				allGames.Add(new Game(game));
-			}
-			allGames.Sort((left, right) => left.Name.CompareTo(right.Name));
-
 			foreach (string tag in state.Tags.Keys.OrderBy(t => t))
 			{
 				CheckState cs;
@@ -67,6 +40,8 @@ namespace SteamGames
 			{
 				FilterList.SelectedItem = state.Filters[state.SelectedFilter];
 			}
+
+			ImageCache.RedrawNotification = GameListView.Invalidate;
 		}
 
 		private void UpdateDetails(Game game)
@@ -84,7 +59,7 @@ namespace SteamGames
 				TagListBox.Items.Clear();
 				UninstallGameButton.Visible = HasTag("installed", game);
 
-				foreach (var tag in state.Tags.Keys.OrderBy(k => k))
+				foreach (string tag in state.Tags.Keys.OrderBy(k => k))
 				{
 					if (state.Tags[tag].Contains(game.Id))
 					{
@@ -229,6 +204,8 @@ namespace SteamGames
 			}
 
 			state.Save();
+
+			Program.Context.FormClosed();
 		}
 
 		private void RunGameButton_Click(object sender, EventArgs e)
@@ -269,11 +246,11 @@ namespace SteamGames
 
 		private void button6_Click(object sender, EventArgs e)
 		{
-			var filterForm = new FilterEditor(state, (Filter)FilterList.SelectedItem);
+			var filterForm = new FilterEditor(state, (Filter) FilterList.SelectedItem);
 			if (filterForm.ShowDialog() != DialogResult.OK)
 				return;
 
-			state.Filters.Remove(((Filter)FilterList.SelectedItem).Name);
+			state.Filters.Remove(((Filter) FilterList.SelectedItem).Name);
 
 			state.Filters[filterForm.Result.Name] = filterForm.Result;
 
@@ -291,7 +268,7 @@ namespace SteamGames
 
 		private void button7_Click(object sender, EventArgs e)
 		{
-			state.Filters.Remove(((Filter)FilterList.SelectedItem).Name);
+			state.Filters.Remove(((Filter) FilterList.SelectedItem).Name);
 			UpdateFilters();
 
 			EditFilterButton.Enabled = state.Filters.Count != 0;
@@ -326,6 +303,11 @@ namespace SteamGames
 
 				Filter();
 			}
+		}
+
+		private void GamesForm_Load(object sender, EventArgs e)
+		{
+			Program.Context.FormOpened();
 		}
 	}
 }
