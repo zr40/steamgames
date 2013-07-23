@@ -140,6 +140,7 @@ namespace SteamGames
 				filterGames = allGames.Where(((Filter) FilterList.SelectedItem).Evaluate).ToList();
 			}
 
+			TagContainer.SuspendLayout();
 			foreach (CheckBox cb in TagContainer.Controls)
 			{
 				cb.Text = string.Format("{0} ({1})", cb.Tag, FilterGames(filterGames, cb).Count());
@@ -159,6 +160,7 @@ namespace SteamGames
 						break;
 				}
 			}
+			TagContainer.ResumeLayout();
 
 			GameListView.SetObjects(FilterGames(filterGames));
 			objectListView1_ItemSelectionChanged(null, null);
